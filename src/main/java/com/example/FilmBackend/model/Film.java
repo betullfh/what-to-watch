@@ -3,7 +3,6 @@ package com.example.FilmBackend.model;
 import jakarta.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Film {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,7 +60,7 @@ public class Film {
         return image_url;
     }
 
-    public void setImage_url(String image_url) {
+    public void setImage_url(String imageUrl) {
         this.image_url = image_url;
     }
 

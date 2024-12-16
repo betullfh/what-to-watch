@@ -5,7 +5,6 @@ import com.example.FilmBackend.service.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.http.HttpStatus;
 
 import java.util.List;
 
@@ -36,14 +35,9 @@ public class FilmController {
     // Bir filmi ID ile getir
     @GetMapping("/{id}")
     public ResponseEntity<Film> getFilmById(@PathVariable Long id) {
-        try {
-            Film film = filmService.getFilmById(id);
-            return ResponseEntity.ok(film);
-        } catch (RuntimeException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
-        }
+        Film film = filmService.getFilmById(id); // FilmService'ten filmi al
+        return ResponseEntity.ok(film);
     }
-
 
     // Bir filmi güncelle
     @PutMapping("/{id}")
