@@ -84,25 +84,10 @@ function Navbar() {
           open={Boolean(userMenuAnchorEl)}
           onClose={handleUserMenuClose}
         >
+          
           <MenuItem
             onClick={() => {
-              navigate("/profile");
-              handleUserMenuClose();
-            }}
-          >
-            Profilim
-          </MenuItem>
-          <MenuItem
-            onClick={() => {
-              navigate("/settings");
-              handleUserMenuClose();
-            }}
-          >
-            Ayarlar
-          </MenuItem>
-          <MenuItem
-            onClick={() => {
-              navigate("/logout");
+              navigate("/login");
               handleUserMenuClose();
             }}
           >

@@ -13,7 +13,7 @@
     background-size: 50% 100%; 
     background-position: left; 
     background-repeat: no-repeat;
-    border: 10px solid rgba(167, 187, 198, 0.533);
+    border: 10px solid rgba(170, 183, 191, 0.533);
     border-radius: 16px;
 }
 
@@ -25,13 +25,13 @@
     align-items: center;
     margin-left: 550px;
     height: 500px;
-    background-color: #b9b8b8;
+    background-color: #aaaaaa;
 }
 
 .register-form {
     width: 80%; 
     margin: auto;
-    background-color: #b9b8b8; 
+    background-color: #aaaaaa; 
     padding: 2px;
     border-radius: 10px;
     height: 500px;

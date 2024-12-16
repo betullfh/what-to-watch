@@ -21,7 +21,7 @@ function LoginPage() {
     e.preventDefault();
     try {
       const user = await loginPageService.login(username, password);
-      toast.success(`Hoş geldin, ${user.username}!`);
+      toast.success(`Hoş geldin, ${username}!`);
       navigate("/"); // Giriş başarılıysa ana sayfaya yönlendir
     } catch (err) {
       toast.error("Kullanıcı adı veya şifre hatalı.");
