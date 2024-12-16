@@ -1,0 +1,10 @@
+.menu-items {
+    display: flex;
+  }
+  
+  @media (max-width: 960px) {
+    .menu-items {
+      display: none; /* Küçük ekranlarda menü öğelerini gizle */
+    }
+  }
+  

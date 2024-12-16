@@ -1,0 +1,27 @@
+.movie-card {
+  width: 600px; /* Kartın genişliği */
+  height: 140px; /* Kartın yüksekliği */
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.movie-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.movie-likes {
+  transition: color 0.3s;
+}
+
+.movie-likes:hover {
+  color: #ff4081;
+}
+
+.movie-card {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.movie-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
