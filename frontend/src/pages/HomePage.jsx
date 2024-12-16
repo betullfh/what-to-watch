@@ -1,8 +1,9 @@
 import React from 'react'
+import FilmList from '../components/FilmList'
 
 function HomePage() {
   return (
-    <div>HomePage</div>
+    <div><FilmList/></div>
   )
 }
 

@@ -1,101 +1,124 @@
-import { Grid2, InputAdornment, TextField, Button } from "@mui/material";
-import React from "react";
+import { Grid, InputAdornment, TextField, Button, Grid2 } from "@mui/material";
+import React, { useState } from "react";
 import { FaLock, FaUserCircle } from "react-icons/fa";
 import "../css/LoginPage.css";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import registerPageService from "../services/RegisterPageService";
 
 function RegisterPage() {
+  const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
-    const navigate=useNavigate()
+  const handleRegister = async (e) => {
+    e.preventDefault();
+
+    try {
+      const newUser = { username, password };
+      await registerPageService.register(newUser);
+      toast.success("Kayıt başarılı! Giriş yapabilirsiniz.");
+      navigate("/login"); 
+    } catch (err) {
+      toast.error("Kayıt sırasında bir hata oluştu.");
+    }
+  };
 
   return (
     <div className="register-login">
       <div className="main">
         <h3 className="login-register-title">WhatToWatch</h3>
-        <form className="register-form">
-           
+        <form className="register-form" onSubmit={handleRegister}>
           <div className="input-form">
-          <h3 className="login-title">Kayıt Ol</h3>
+            <h3 className="login-title">Kayıt Ol</h3>
             <div className="inputs">
               <Grid2 container spacing={2}>
                 <TextField
                   id="username"
                   placeholder="Kullanıcı adı"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        <FaUserCircle
-                          style={{ color: "gray", fontSize: "18px" }}
-                        />{" "}
+                        <FaUserCircle style={{ color: "gray", fontSize: "18px" }} />
                       </InputAdornment>
                     ),
-                    disableUnderline: true,
                   }}
+                  variant="filled"
                   sx={{
-                    marginBottom: "20px",
+                    marginBottom: "10px",
                     borderRadius: "10px",
-                    backgroundColor: "#dce6eb",
+                    backgroundColor: "#dce6eb", 
                     "& .MuiFilledInput-root": {
-                      borderRadius: "10px",
-                      padding: "0px 15px",
-                      color: "black",
+                      borderRadius: "10px", 
+                      padding: "0px 10px",
+                      color: "black", 
                     },
                     "& .MuiInputBase-root": {
                       border: "1px solid #ccc",
                     },
                     "&::placeholder": {
-                      color: "black",
+                      color: "black", 
                     },
                   }}
-                  variant="filled"
-                  color="primary"
                 />
                 <TextField
                   id="password"
                   type="password"
                   placeholder="Şifre"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        <FaLock style={{ color: "gray", fontSize: "18px" }} />{" "}
+                        <FaLock style={{ color: "gray", fontSize: "18px" }} />
                       </InputAdornment>
                     ),
-                    disableUnderline: true,
                   }}
                   sx={{
-                    marginBottom: "20px",
+                    marginBottom: "10px",
                     borderRadius: "10px",
-                    backgroundColor: "#dce6eb",
+                    backgroundColor: "#dce6eb", 
                     "& .MuiFilledInput-root": {
-                      borderRadius: "10px",
-                      padding: "0px 15px",
-                      color: "black",
+                      borderRadius: "10px", 
+                      padding: "0px 10px", 
+                      color: "black", 
                     },
                     "& .MuiInputBase-root": {
-                      border: "1px solid #ccc",
+                      border: "1px solid #ccc", 
                     },
                     "&::placeholder": {
-                      color: "black",
+                      color: "black", 
                     },
                   }}
                   variant="filled"
-                  color="primary"
                 />
               </Grid2>
             </div>
 
             <div className="actions">
               <div className="form-button">
-                <Button color="primary" size="medium">
-                  Kaydol
-                </Button>
-                <Button color="gray" size="medium">
-                  Temizle
-                </Button>
+               <Button type="submit"
+               color="primary" size="medium">
+                Kayıt Ol
+               </Button>
+               <Button
+               color="gray" size="medium" onClick={() => {
+                setUsername("");
+                setPassword("");
+              }}
+              >
+                Temizle
+               </Button>
+                
               </div>
             </div>
+
             <div className="login-choice">
-              <p onClick={()=>navigate("/login")} className="login-p">Zaten bir hesabın var mı? Giriş Yap.</p>
+              <p onClick={() => navigate("/login")} className="login-p">
+                Zaten bir hesabın var mı? Giriş Yap.
+              </p>
             </div>
           </div>
         </form>

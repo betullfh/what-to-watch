@@ -1,5 +1,5 @@
 .register-login {
-    background-color: #c8d8dd;
+    background-color: #969696;
     display: flex;
     flex-direction: row;
     justify-content: space-between; 
@@ -25,13 +25,13 @@
     align-items: center;
     margin-left: 550px;
     height: 500px;
-    background-color: #c8d8dd;
+    background-color: #b9b8b8;
 }
 
 .register-form {
     width: 80%; 
     margin: auto;
-    background-color: #c8d8dd; 
+    background-color: #b9b8b8; 
     padding: 2px;
     border-radius: 10px;
     height: 500px;

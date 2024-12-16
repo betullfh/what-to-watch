@@ -3,12 +3,31 @@ import { FaLock, FaUserCircle } from "react-icons/fa";
 import "../css/LoginPage.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import loginPageService from "../services/LoginPageService";
 
 
 
 function LoginPage() {
     const navigate=useNavigate()
-    const [role, setRole] = useState("user");
+    const [username, setUsername] = useState(""); 
+  const [password, setPassword] = useState(""); 
+
+
+  
+  
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const user = await loginPageService.login(username, password);
+      toast.success(`Hoş geldin, ${user.username}!`);
+      navigate("/"); // Giriş başarılıysa ana sayfaya yönlendir
+    } catch (err) {
+      toast.error("Kullanıcı adı veya şifre hatalı.");
+    }
+  };
+
 
 
     
@@ -16,8 +35,8 @@ function LoginPage() {
   return (
     <div className="register-login">
       <div className="main">
-        <h3 className="login-register-title">MindSpark</h3>
-        <form  className="register-form">
+        <h3 className="login-register-title">WhatToWatch</h3>
+        <form  className="register-form" onSubmit={handleLogin}>
            
           <div className="input-form">
           <h3 className="login-title">Giriş Yap</h3>
@@ -26,6 +45,8 @@ function LoginPage() {
                 <TextField
                   id="username"
                   placeholder="Ad"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
@@ -57,13 +78,14 @@ function LoginPage() {
                   id="password"
                   type="password"
                   placeholder="Şifre"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   InputProps={{
                     startAdornment: (
                       <InputAdornment position="start">
-                        <FaLock style={{ color: "gray", fontSize:"18px" }} />{" "}
+                        <FaLock style={{ color: "gray" }} />
                       </InputAdornment>
                     ),
-                    disableUnderline: true, 
                   }}
                   sx={{
                     marginBottom: "10px",
@@ -86,38 +108,20 @@ function LoginPage() {
                 />
               </Grid2>
             </div>
-            <div className="role-selection">
-              <label htmlFor="role" style={{ marginBottom: "12px", fontSize: "16px", marginTop:"10px" }}>
-                
-              </label>
-              <select
-                id="role"
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
-                style={{
-                  width: "100%",
-                  padding: "10px",
-                  marginTop: "10px",
-                  marginBottom: "20px",
-                  borderRadius: "10px",
-                  border: "1px solid #ccc",
-                  backgroundColor: "#dce6eb"
-                }}
-              >
-                <option style={{ backgroundColor: "#dce6eb"}} value="user">Kullanıcı girişi</option>
-                <option value="instructor">Eğitmen girişi</option>
-                <option value="admin">Admin girişi</option>
-              </select>
-            </div>
+           
 
             <div className="actions">
               <div className="form-button">
-               <Button
+               <Button type="submit"
                color="primary" size="medium">
                 Giriş Yap
                </Button>
                <Button
-               color="gray" size="medium">
+               color="gray" size="medium" onClick={() => {
+                setUsername("");
+                setPassword("");
+              }}
+              >
                 Temizle
                </Button>
                 
