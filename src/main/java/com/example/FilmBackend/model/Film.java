@@ -56,11 +56,11 @@ public class Film {
         this.director = director;
     }
 
-    public String getImageUrl() {
+    public String getImage_url() {
         return image_url;
     }
 
-    public void setImageUrl(String imageUrl) {
+    public void setImage_url(String imageUrl) {
         this.image_url = image_url;
     }
 
