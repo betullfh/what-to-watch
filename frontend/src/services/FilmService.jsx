@@ -22,6 +22,11 @@ class FilmService {
   deleteFilm(id) {
     return axios.delete(`${BASE_URL}/${id}`);
   }
+
+  getSortedFilmsByYear() {
+    return axios.get(`${BASE_URL}/sort-by-year`)
+
+  }
 }
 
 export default new FilmService();

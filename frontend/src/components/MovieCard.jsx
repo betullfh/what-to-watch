@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import "../css/MovieCard.css";
 
 function MovieCard(props) {
-  const { id, title, genre, director, rating, image_url } = props.film;
+  const { id, title, genre, director, rating, image_url, release_year } = props.film;
 
   const [voteCount, setVotecount] = useState(rating);
 
@@ -44,14 +44,17 @@ function MovieCard(props) {
 
       {/* Bilgi ve Oy */}
       <CardContent sx={{ textAlign: "center", padding: "10px", height:"140px" }}>
-        <Typography variant="h6" sx={{ fontFamily: "monospace", fontSize: "16px" }}>
+        <Typography variant="h5" sx={{ fontFamily: "monospace", fontSize: "16px" }}>
           {title}
         </Typography>
         <Typography variant="body2" sx={{ fontSize: "12px", color: "#b3b3b3" }}>
-          {genre}
+          Tür: {genre}
         </Typography>
         <Typography variant="body2" sx={{ fontSize: "12px", color: "#b3b3b3" }}>
           Yönetmen: {director}
+        </Typography>
+        <Typography variant="body2" sx={{ fontFamily: "monospace", fontSize: "12px" }}>
+          Yayınlanma Tarihi: {release_year}
         </Typography>
       </CardContent>
 
