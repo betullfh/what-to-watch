@@ -12,23 +12,50 @@ import java.util.List;
 @RequestMapping("/api/films")
 public class FilmController {
 
+    private final FilmService filmService;
+
     @Autowired
-    private FilmService filmService;
+    public FilmController(FilmService filmService) {
+        this.filmService = filmService;
+    }
 
+    // Tüm filmleri getir
     @GetMapping
-    public ResponseEntity<List<Film>> getAllFilms() {
-        return ResponseEntity.ok(filmService.getAllFilms());
+    public List<Film> getAllFilms() {
+        return filmService.getAllFilms();
     }
 
+    // Yeni bir film ekle
     @PostMapping
-    public ResponseEntity<Film> addFilm(@RequestBody Film film) {
-        Film savedFilm = filmService.saveFilm(film);
-        return ResponseEntity.ok(savedFilm);
+    public ResponseEntity<Film> createFilm(@RequestBody Film film) {
+        Film createdFilm = filmService.saveFilm(film);
+        return ResponseEntity.ok(createdFilm);
     }
 
+    // Bir filmi ID ile getir
+    @GetMapping("/{id}")
+    public ResponseEntity<Film> getFilmById(@PathVariable Long id) {
+        Film film = filmService.getFilmById(id); // FilmService'ten filmi al
+        return ResponseEntity.ok(film);
+    }
+
+    // Bir filmi güncelle
+    @PutMapping("/{id}")
+    public ResponseEntity<Film> updateFilm(@PathVariable Long id, @RequestBody Film filmDetails) {
+        Film updatedFilm = filmService.updateFilm(id, filmDetails); // FilmService ile güncelle
+        return ResponseEntity.ok(updatedFilm);
+    }
+
+    // Bir filmi sil
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteFilm(@PathVariable Long id) {
-        filmService.deleteFilm(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<String> deleteFilm(@PathVariable Long id) {
+        filmService.deleteFilm(id); // FilmService ile sil
+        return ResponseEntity.ok("Film başarıyla silindi.");
+    }
+
+    @GetMapping("/sort-by-year")
+    public ResponseEntity<List<Film>> getFilmsSortedByYear() {
+        List<Film> sortedFilms = filmService.getFilmsSortedByYear();
+        return ResponseEntity.ok(sortedFilms);
     }
 }
