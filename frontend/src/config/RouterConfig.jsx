@@ -4,6 +4,8 @@ import RegisterPage from '../pages/RegisterPage'
 import LoginPage from '../pages/LoginPage'
 import HomePage from '../pages/HomePage'
 import FilmList from '../components/FilmList'
+import AboutPage from '../pages/AboutPage'
+import CreateFilm from '../components/CreateFilm'
 
 function RouterConfig() {
   return (
@@ -12,6 +14,8 @@ function RouterConfig() {
     <Route path="/login" element={<LoginPage/>} />
     <Route path="/" element={<HomePage/>}/>
     <Route path='/films' element={<FilmList/>}/>
+    <Route path= "/about" element={<AboutPage/>}/>
+    <Route path="/addMovie" element={<CreateFilm/>}/>
    </Routes>
   )
 }

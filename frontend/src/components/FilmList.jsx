@@ -3,13 +3,19 @@ import filmService from "../services/FilmService";
 import MovieCard from "./MovieCard";
 import { toast } from "react-toastify";
 import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function FilmList() {
   const [films, setFilms] = useState([]);
+  const navigate=useNavigate()
 
   useEffect(() => {
     fetchFilms();
   }, []);
+
+  const toAdd =()=>{
+    navigate("/addMovie")
+  }
 
   // Yıllara göre sıralı filmleri çek
   const fetchSortedFilms = async () => {
@@ -44,14 +50,17 @@ function FilmList() {
         minHeight: "100vh",
       }}
     >
-      <div style={{ width: "100%", textAlign: "center", marginBottom: "20px" }}>
+      <div style={{ width: "100%", textAlign: "center", marginBottom: "20px"}}>
         <Button
-          onClick={fetchSortedFilms} // Burada doğru fonksiyon kullanılıyor
+          onClick={fetchSortedFilms} 
           variant="contained"
           color="primary"
+          sx={{marginRight:"6px"}}
         >
           Yıllara Göre Sırala
         </Button>
+        <Button variant="contained"
+          color="primary" onClick={toAdd}>Film Ekle</Button>
       </div>
       {films.map((film) => (
         <MovieCard key={film.id} film={film} />

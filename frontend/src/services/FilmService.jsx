@@ -12,6 +12,7 @@ class FilmService {
   createFilm(film) {
     return axios.post(BASE_URL, film);
   }
+  
 
   // Film güncelle
   updateFilm(id, film) {
