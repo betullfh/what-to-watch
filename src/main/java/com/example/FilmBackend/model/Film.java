@@ -15,7 +15,7 @@ public class Film {
     private double rating;
     private String image_url;
 
-    // Getter ve Setter metotları
+
     public Long getId() {
         return id;
     }
@@ -71,4 +71,7 @@ public class Film {
     public void setRating(double rating) {
         this.rating = rating;
     }
+
+
+
 }
