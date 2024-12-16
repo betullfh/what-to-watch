@@ -18,6 +18,11 @@ class FilmService {
   updateFilm(id, film) {
     return axios.put(`${BASE_URL}/${id}`, film);
   }
+  
+  getFilmById(id) {
+    return axios.get(`${BASE_URL}/${id}`);
+  }
+  
 
   // Film sil
   deleteFilm(id) {

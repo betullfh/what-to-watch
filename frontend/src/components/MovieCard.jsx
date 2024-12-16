@@ -1,50 +1,46 @@
 import React, { useState } from "react";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
-import { CardMedia } from "@mui/material";
+import { Card, CardContent, CardActions, CardMedia, Typography, Button } from "@mui/material";
 import { BiLike } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../css/MovieCard.css";
 
 function MovieCard(props) {
   const { id, title, genre, director, rating, image_url, release_year } = props.film;
-
   const [voteCount, setVotecount] = useState(rating);
+  const navigate = useNavigate(); // navigate tanımlandı
 
-  
   return (
     <Card
       className="movie-card"
       sx={{
-        width: "220px", // Daha kompakt genişlik
-        height: "310px", // Daha kompakt yükseklik
+        width: "220px",
+        height: "350px",
         margin: "15px",
-        backgroundColor: "#1c4471", // Daha koyu arka plan
+        backgroundColor: "#1c4471",
         color: "white",
         borderRadius: "8px",
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-        overflow: "hidden",
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
+        justifyContent: "space-between", // Butonu alta sabitler
+        overflow: "hidden",
       }}
     >
-      {/* Görsel */}
+      {/* Film Görseli */}
       <CardMedia
         component="img"
         alt={title || "Film Afişi"}
         image={image_url || "/path/to/default-image.jpg"}
         sx={{
           width: "100%",
-          height: "100px", // Görsel yüksekliği küçüldü
+          height: "140px",
           objectFit: "cover",
         }}
       />
 
-      {/* Bilgi ve Oy */}
-      <CardContent sx={{ textAlign: "center", padding: "10px", height:"140px" }}>
-        <Typography variant="h5" sx={{ fontFamily: "monospace", fontSize: "16px" }}>
+      {/* Film Bilgileri */}
+      <CardContent sx={{ textAlign: "center", padding: "10px" }}>
+        <Typography variant="h6" sx={{ fontSize: "16px", fontFamily: "monospace" }}>
           {title}
         </Typography>
         <Typography variant="body2" sx={{ fontSize: "12px", color: "#b3b3b3" }}>
@@ -53,37 +49,36 @@ function MovieCard(props) {
         <Typography variant="body2" sx={{ fontSize: "12px", color: "#b3b3b3" }}>
           Yönetmen: {director}
         </Typography>
-        <Typography variant="body2" sx={{ fontFamily: "monospace", fontSize: "12px" }}>
-          Yayınlanma Tarihi: {release_year}
+        <Typography variant="body2" sx={{ fontSize: "12px", color: "#b3b3b3" }}>
+          Yıl: {release_year}
         </Typography>
       </CardContent>
 
-      {/* Oy ve Detay */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          width: "90%",
-          marginBottom: "0px",
-        }}
-      >
+      {/* Beğeni ve Güncelle Butonu */}
+      <CardActions sx={{ justifyContent: "space-between", padding: "10px" }}>
         <div style={{ display: "flex", alignItems: "center" }}>
           <BiLike
-            
+            onClick={() => setVotecount(voteCount + 1)} // Beğeni sayısını artırır
             style={{
               fontSize: "20px",
               color: "#ff4081",
               cursor: "pointer",
-              marginRight: "5px",
+              marginRight: "10px",
             }}
           />
           <span>{voteCount}</span>
         </div>
-        <Link to={`details/${id}`} style={{ textDecoration: "none", color: "#00bcd4" }}>
-          Detay
-        </Link>
-      </div>
+        <Button
+          variant="text"
+          color="warning"
+          onClick={() => navigate("/updateMovie", { state: { id } })}
+          size="small"
+          sx={{marginRight:"75px"}}
+        >
+          Güncelle
+        </Button>
+        
+      </CardActions>
     </Card>
   );
 }

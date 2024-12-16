@@ -6,6 +6,7 @@ import HomePage from '../pages/HomePage'
 import FilmList from '../components/FilmList'
 import AboutPage from '../pages/AboutPage'
 import CreateFilm from '../components/CreateFilm'
+import UpdateFilm from '../components/UpdateFilm'
 
 function RouterConfig() {
   return (
@@ -16,6 +17,7 @@ function RouterConfig() {
     <Route path='/films' element={<FilmList/>}/>
     <Route path= "/about" element={<AboutPage/>}/>
     <Route path="/addMovie" element={<CreateFilm/>}/>
+    <Route path='/updateMovie' element={<UpdateFilm/>}/>
    </Routes>
   )
 }

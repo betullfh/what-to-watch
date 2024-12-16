@@ -108,11 +108,12 @@ function FilmList() {
             color="error"
             style={{
               position: "absolute",
-              top: "10px",
-              right: "10px",
+              bottom: "26px",
+              right: "20px",
               backgroundColor: "#f44336",
             }}
             onClick={() => handleDeleteClick(film)}
+            size="small"
           >
             Sil
           </Button>
