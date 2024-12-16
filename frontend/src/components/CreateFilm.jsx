@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 import {
   Card,
   CardContent,
@@ -9,9 +10,12 @@ import {
   Box,
 } from "@mui/material";
 import { toast } from "react-toastify";
-import FilmService from "../services/FilmService";
+import filmService from "../services/FilmService";
 
 function CreateFilm() {
+ 
+
+
   const [film, setFilm] = useState({
     title: "",
     genre: "",
@@ -29,7 +33,7 @@ function CreateFilm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await FilmService.createFilm(film);
+      await filmService.createFilm(film);
       toast.success("Film başarıyla eklendi!");
       setFilm({
         title: "",
@@ -43,6 +47,9 @@ function CreateFilm() {
       toast.error("Film eklenirken hata oluştu!");
     }
   };
+
+ 
+  
 
   return (
     <Box
@@ -67,6 +74,7 @@ function CreateFilm() {
           <Typography variant="h4" component="div" textAlign="center" mb={3}>
             Film Ekle
           </Typography>
+          
           <form onSubmit={handleSubmit}>
             <TextField
               fullWidth
